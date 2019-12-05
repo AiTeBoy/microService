@@ -15,6 +15,7 @@
         <module>guns-generator</module>
         <module>guns-user</module>
         <module>guns-api</module>
+        <module>guns-gateway</module>
     </modules>
 
     <parent>

@@ -48,8 +48,8 @@ public abstract class AbstractGeneratorConfig {
     public void init() {
         config();
 
-        packageConfig.setService(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service");
-        packageConfig.setServiceImpl(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service.impl");
+        packageConfig.setService(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".user");
+        packageConfig.setServiceImpl(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".user.impl");
 
         //controller没用掉,生成之后会自动删掉
         packageConfig.setController("TTT");

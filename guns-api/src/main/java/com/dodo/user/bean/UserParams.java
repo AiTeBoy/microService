@@ -1,4 +1,4 @@
-package com.dodo.service.bean;
+package com.dodo.user.bean;
 
 import lombok.Data;
 

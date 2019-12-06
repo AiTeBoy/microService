@@ -31,7 +31,7 @@ public class ContextConfig {
     private Boolean jsSwitch = true;            //js
     private Boolean infoJsSwitch = true;        //详情页面js
     private Boolean daoSwitch = true;           //dao
-    private Boolean serviceSwitch = true;       //service
+    private Boolean serviceSwitch = true;       //user
     private Boolean entitySwitch = true;        //生成实体的开关
     private Boolean sqlSwitch = true;           //生成sql的开关
 

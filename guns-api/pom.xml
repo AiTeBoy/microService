@@ -19,6 +19,7 @@
     </parent>
 
     <dependencies>
+<!--这些事项目本身自带的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -45,7 +46,7 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>2.0.0</version>
         </dependency>
-<!--        以下新添加-->
+<!--以下新添加-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>

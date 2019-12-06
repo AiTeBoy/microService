@@ -1,14 +1,18 @@
 package com.stylefeng.guns.rest.modular.auth.filter;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.dodo.user.UserService;
 import com.stylefeng.guns.core.base.tips.ErrorTip;
 import com.stylefeng.guns.core.util.RenderUtil;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
+import com.stylefeng.guns.rest.controller.user.UserController;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import io.jsonwebtoken.JwtException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -33,12 +37,35 @@ public class AuthFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProperties jwtProperties;
 
+    @Reference(interfaceClass = UserService.class,check = false)
+    UserService userService;
+
+    @Autowired
+    RedisTemplate redisTemplate;
+
+    @Autowired
+    UserController userController;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
             chain.doFilter(request, response);
             return;
         }
+
+/*
+        //当redis里面没有了用户数据的时候，登出；
+        //若存在，则刷新时间
+        String token = request.getHeader("Authorization").substring(7);
+        Boolean check = redisTemplate.hasKey(token);
+        if(!check){//redis中不存在，登出
+            userController.logout(request);//没有成功退出！！！！
+        }else{//存在，刷新存在时间
+          redisTemplate.expire(token,10*60, TimeUnit.SECONDS);
+            Long expire = redisTemplate.getExpire(token);
+            System.out.println(expire+"\n\n\n\n\n\n");
+        }*/
+
         final String requestHeader = request.getHeader(jwtProperties.getHeader());
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {

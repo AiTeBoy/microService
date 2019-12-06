@@ -86,7 +86,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public JdkRegexpMethodPointcut druidStatPointcut() {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
-        String patterns = "com.stylefeng.guns.modular.*.service.*";
+        String patterns = "com.stylefeng.guns.modular.*.user.*";
         //可以set多个
         druidStatPointcut.setPatterns(patterns);
         return druidStatPointcut;

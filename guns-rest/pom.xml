@@ -24,7 +24,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.stylefeng.guns</groupId>
+            <artifactId>guns-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

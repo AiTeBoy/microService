@@ -1,6 +1,6 @@
-package com.dodo.service;
+package com.dodo.user;
 
-import com.dodo.service.bean.UserParams;
+import com.dodo.user.bean.UserParams;
 import com.dodo.vo.BaseVo;
 
 public interface UserService {
@@ -13,4 +13,7 @@ public interface UserService {
 
     //检查用户名是否注册过
     Integer check(String username);
+
+    //用户退出
+    Boolean logout(String token);
 }

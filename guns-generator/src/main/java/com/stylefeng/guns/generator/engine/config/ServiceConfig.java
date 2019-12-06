@@ -24,20 +24,20 @@ public class ServiceConfig {
     public void init() {
         ArrayList<String> imports = new ArrayList<>();
         imports.add("org.springframework.stereotype.Service");
-        imports.add("com.baomidou.mybatisplus.service.impl.ServiceImpl");
+        imports.add("com.baomidou.mybatisplus.user.impl.ServiceImpl");
         imports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
         imports.add(contextConfig.getModelMapperPackageName() + "." + contextConfig.getEntityName() + "Mapper");
-        imports.add(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service.I" + contextConfig.getBizEnBigName() + "Service");
+        imports.add(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".user.I" + contextConfig.getBizEnBigName() + "Service");
         this.serviceImplImports = imports;
 
         ArrayList<String> interfaceImports = new ArrayList<>();
-        interfaceImports.add("com.baomidou.mybatisplus.service.IService");
+        interfaceImports.add("com.baomidou.mybatisplus.user.IService");
         interfaceImports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
         this.serviceInterfaceImports = interfaceImports;
 
-        this.servicePathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\service\\I{}Service.java";
-        this.serviceImplPathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
-        this.packageName = contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service";
+        this.servicePathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\user\\I{}Service.java";
+        this.serviceImplPathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\user\\impl\\{}ServiceImpl.java";
+        this.packageName = contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".user";
     }
 
 

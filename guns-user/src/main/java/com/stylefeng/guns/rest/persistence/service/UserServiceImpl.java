@@ -3,13 +3,14 @@ package com.stylefeng.guns.rest.persistence.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.dodo.service.bean.UserParams;
-import com.dodo.service.UserService;
+import com.dodo.user.bean.UserParams;
+import com.dodo.user.UserService;
 import com.dodo.vo.BaseVo;
 import com.stylefeng.guns.core.util.MD5Util;
 import com.stylefeng.guns.rest.persistence.dao.MtimeUserTMapper;
 import com.stylefeng.guns.rest.persistence.model.MtimeUserT;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,6 +21,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     MtimeUserTMapper mtimeUserTMapper;
+
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @Override
     public BaseVo register(UserParams userRegister) {
@@ -67,6 +71,15 @@ public class UserServiceImpl implements UserService{
         wrapper.eq("user_name",username);
         Integer integer = mtimeUserTMapper.selectCount(wrapper);
         return integer;
+    }
+
+    @Override
+    public Boolean logout(String token) {
+        if(!redisTemplate.hasKey(token)){
+            return true;
+        }
+        Boolean delete = redisTemplate.delete(token);
+        return delete;
     }
 
     //数据库的字段和前端传过来的参数字段名不一致，需要转换
